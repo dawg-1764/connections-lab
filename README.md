@@ -1,2 +1,2 @@
 # connections-lab
-stuff for class ~~
+stuff and repo for class ~~
