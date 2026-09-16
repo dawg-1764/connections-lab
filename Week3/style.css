@@ -1,0 +1,26 @@
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#multitudes {
+    cursor: pointer;
+}
+
+.particle {
+    position: fixed;
+    font-size: 18px;
+    color: gold;
+    pointer-events: none;
+    animation: burst 0.8s ease-out forwards;
+}
+
+@keyframes burst {
+    to {
+        transform: translate(var(--dx), var(--dy));
+        opacity: 0;
+    }
+}
