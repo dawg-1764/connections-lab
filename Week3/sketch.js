@@ -1,54 +1,45 @@
-//story
 let story = ["A", "reader", "lives", "a", "thousand", "lives", "before", "he", "dies.", "The", "man", "who", "never", "reads", "lives", "only", "one"];
+let counter = 0;
 
-//make sure the page loads first
 window.addEventListener('load', () => {
-    let counter = 0;
     let container = document.getElementById('container');
+    const word = "multitudes";
 
-    //listen for clicks on the page and get an exact location
-    window.addEventListener('click', (e) => {
-        console.log('you have clicked here, ' + e.x + ',' + e.y);
-        console.log('counter: ', counter);
+    // single listener, only on the multitudes element
+    document.getElementById("multitudes").addEventListener("click", (e) => {
+        const originX = e.clientX;
+        const originY = e.clientY;
 
-        //remove all html elements if story ends
+        //particle behavior
+        word.split("").forEach((letter, i) => {
+            createParticle(originX, originY, word);
+        });
+
+        //story word behavior
         if (counter > story.length - 1) {
-            console.log('cleaning up all content');
-            //remove all children
             while (container.firstChild) {
                 container.removeChild(container.firstChild);
             }
-            counter = 0; // reset to the beginning
-        } else { //otherwise keep adding html elements
+            counter = 0;
+        } else {
             let span = document.createElement('span');
             span.innerHTML = story[counter];
             span.style.position = "absolute";
+
+            //random position on the screen
             span.style.top = `${Math.random() * window.innerHeight}px`;
             span.style.left = `${Math.random() * window.innerWidth}px`;
 
-            //add random color
+            //random color and font size
             let r = Math.floor(Math.random() * 255);
             let g = Math.floor(Math.random() * 255);
             let b = Math.floor(Math.random() * 255);
             span.style.color = `rgb(${r}, ${g}, ${b})`;
-
-            //add random size
             span.style.fontSize = Math.floor(Math.random() * (90 - 20) + 20) + "px";
+
             container.appendChild(span);
-            counter++; //move on to the next word
+            counter++;
         }
-    });
-});
-
-
-document.getElementById("multitudes").addEventListener("click", (e) => {
-    const word = "multitudes";
-    const originX = e.clientX;
-    const originY = e.clientY;
-    const particleCount = 24;
-
-    word.split("").forEach((letter, i) => {
-        createParticle(originX, originY, word); // pass the whole word, not `letter`
     });
 });
 
