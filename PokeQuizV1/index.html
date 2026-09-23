@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Which starter is your partner?</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+
+    <!-- Screen 1: Intro -->
+    <section class = "page" id="intro">
+      <h1>Which starter Pokemon is your partner?</h1>
+      <p>The ultimate test to choose your Pokemon partner for your journey across all regions!</p>
+      <button class="btn" id="start">Start</button>
+    </section>
+
+    <!-- Screen 2: Questions -->
+    <section class = "page" id="quiz" hidden>
+      <div class="progress"><div id="bar"></div></div>
+      <div class="count" id="count"></div>
+      <h2 id="question"></h2>
+      <div class="answers" id="answers"></div>
+    </section>
+
+    <!-- Screen 3: Result -->
+    <section class = "page" id="result" hidden>
+      <h1 id="p-name"></h1>
+      <img id="p-img" alt="Your partner Pokémon" hidden>
+      <div id="p-type"></div>
+      <p id="p-blurb"></p>
+      <div id="p-stats"></div>
+      <p id="p-dex"></p>
+      <button class="btn" id="restart">Try again</button>
+    </section>
+
+  </main>
+  
+  <script src="quiz.js"></script>
+</body>
+</html>

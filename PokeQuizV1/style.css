@@ -1,0 +1,233 @@
+/* --accent is changed by JS on the result screen to match the winner's type. */
+:root {
+    --accent: #2b3a42;
+    --ink: #1c2a31;
+    --bg: #eef2f4;
+    --line: #c3ced4;
+}
+
+@font-face {
+    font-family: "PokemonSolid";
+    src: url(Font/PokemonSolid.ttf);
+}
+
+@font-face {
+    font-family: "PokemonClassic";
+    src: url(Font/PokemonClassic.ttf);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    /* Margin and padding*/
+    margin: 0;
+    min-height: 100vh;
+    padding: 24px 16px;
+
+    /* Display*/
+    display: grid;
+    place-items: center;
+
+    /* Text throughout the entire page*/
+    font-family: "PokemonSolid", sans-serif;
+    letter-spacing: -0.05em;
+    text-align: center;
+    color: var(--ink);
+    line-height: 1.5;
+
+    /* BG image*/
+    background-image: url(Media/background2.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+main {
+    width: 100%;
+    max-width: 560px;
+}
+
+section[hidden] {
+    display: none;
+}
+
+h1 {
+    font-size: clamp(2rem, 7vw, 3rem);
+    line-height: 1.1;
+    letter-spacing: 0.05em;
+    color: #FFCC00;
+    -webkit-text-stroke: 2px #3C5AA6;
+    margin: 0 0 12px;
+}
+
+h2 {
+    font-size: clamp(1.3rem, 4.5vw, 1.8rem);
+    line-height: 1.25;
+    letter-spacing: 0.05em;
+    color: #FFCC00;
+    -webkit-text-stroke: 2px #3C5AA6;
+    margin: 0 0 22px;
+}
+
+p {
+    font-family: "PokemonClassic", sans-serif;
+    font-size: clamp(0.75rem, 2.2vw, 0.9rem);
+    line-height: 1.5;
+    margin: 0 0 22px;
+    letter-spacing: 0.05em;
+    color: #000000;
+}
+
+.page {
+    background: #b1ced498;
+    padding: 24px 32px;
+    border-radius: 8px;
+}
+
+.answers {
+    font-family: "PokemonClassic", sans-serif;
+    font-size: clamp(0.75rem, 2.2vw, 0.9rem);
+    line-height: 1.5;
+    margin: 0 0 22px;
+    letter-spacing: 0.05em;
+    color: #000000;
+}
+
+.btn {
+    font: inherit;
+    font-weight: 700;
+    color: #fff;
+    background: var(--accent);
+    border: 0;
+    padding: 12px 22px;
+    cursor: pointer;
+}
+
+.btn:focus-visible,
+.answers button:focus-visible {
+    outline: 3px solid var(--ink);
+    outline-offset: 3px;
+}
+
+/* Quiz screen */
+.progress {
+    height: 4px;
+    background: var(--line);
+    margin-bottom: 8px;
+}
+
+.progress>div {
+    height: 100%;
+    width: 0;
+    background: var(--ink);
+    transition: width 0.3s;
+}
+
+.count {
+    font-size: 0.9rem;
+    margin-bottom: 24px;
+}
+
+.answers {
+    display: grid;
+    gap: 10px;
+}
+
+.answers button {
+    text-align: left;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-left: 6px solid var(--ink);
+    padding: 14px 16px;
+}
+
+.answers button:hover {
+    border-left-color: var(--accent);
+}
+
+/* Result screen */
+#p-name {
+    text-transform: capitalize;
+}
+
+#p-img {
+    display: block;
+    width: 280px;
+    height: 280px;
+    margin: 0 auto 20px;
+    image-rendering: pixelated;
+    /* keeps the small sprite crisp instead of blurry */
+}
+
+#p-img[hidden] {
+    display: none;
+}
+
+#p-type {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 18px;
+}
+
+#p-type p {
+    margin: 0;
+    padding: 2px 12px;
+    font-size: 0.9rem;
+    background: var(--accent);
+    color: #fff;
+    text-transform: capitalize;
+}
+
+#p-dex {
+    font-style: italic;
+}
+
+/* Stat bars */
+#p-stats {
+    margin-bottom: 22px;
+    font-family: "PokemonClassic", sans-serif;
+    font-size: clamp(0.75rem, 2.2vw, 0.9rem);
+    line-height: 1.5;
+    margin: 0 0 22px;
+    letter-spacing: 0.05em;
+    -webkit-text-stroke: 1.5px #000000;
+    color: #000000;
+}
+
+.stat {
+    display: grid;
+    grid-template-columns: 130px 1fr 36px;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+    font-size: 0.9rem;
+}
+
+.stat span:first-child {
+    text-transform: capitalize;
+}
+
+.stat span:last-child {
+    text-align: right;
+}
+
+.track {
+    background: #fff;
+    height: 10px;
+}
+
+.fill {
+    background: var(--accent);
+    height: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
+}
