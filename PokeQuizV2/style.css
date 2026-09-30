@@ -1,0 +1,295 @@
+/* --accent is changed by JS on the result screen to match the winner's type. */
+:root {
+    --accent: #2b3a42;
+    --ink: #1c2a31;
+    --bg: #eef2f4;
+    --line: #c3ced4;
+}
+
+@font-face {
+    font-family: "PokemonSolid";
+    src: url(Font/PokemonSolid.ttf);
+}
+
+@font-face {
+    font-family: "PokemonClassic";
+    src: url(Font/PokemonClassic.ttf);
+}
+
+/*Main Styles*/
+* {
+    box-sizing: border-box;
+}
+
+body {
+    /* Margin and padding*/
+    margin: 0;
+    min-height: 100vh;
+    padding: 24px 16px;
+
+    /* Display*/
+    display: grid;
+    place-items: center;
+    cursor: default;
+
+    /* Text throughout the entire page*/
+    font-family: "PokemonSolid", sans-serif;
+    letter-spacing: -0.05em;
+    text-align: center;
+    color: var(--ink);
+    line-height: 1.5;
+
+    /* BG image*/
+    background-image: url(Media/BG.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+main {
+    width: 100%;
+    max-width: 560px;
+}
+
+section[hidden] {
+    display: none;
+}
+
+h1 {
+    font-size: clamp(2rem, 7vw, 3rem);
+    line-height: 1.1;
+    letter-spacing: 0.05em;
+    color: #FFCC00;
+    -webkit-text-stroke: 2px #3C5AA6;
+    margin: 0 0 12px;
+}
+
+h2 {
+    font-size: clamp(1.3rem, 4.5vw, 1.8rem);
+    line-height: 1.25;
+    letter-spacing: 0.05em;
+    color: #FFCC00;
+    -webkit-text-stroke: 2px #3C5AA6;
+    margin: 0 0 22px;
+}
+
+p {
+    font-family: "PokemonClassic", sans-serif;
+    font-size: clamp(0.75rem, 2.2vw, 0.9rem);
+    line-height: 1.5;
+    margin: 0 0 22px;
+    letter-spacing: 0.05em;
+    color: #000000;
+}
+
+.page {
+    background: #f4f8fa;
+    border: 4px solid var(--ink);
+    border-radius: 0;              
+    box-shadow: 6px 6px 0 var(--ink);  
+    padding: 24px 32px;
+}
+
+.answers {
+    font-family: "PokemonClassic", sans-serif;
+    font-size: clamp(0.75rem, 2.2vw, 0.9rem);
+    line-height: 1.5;
+    margin: 0 0 22px;
+    letter-spacing: 0.05em;
+    color: #000000;
+}
+
+.btn {
+    font: inherit;
+    font-weight: 700;
+    color: #fff;
+    background: var(--accent);
+    border: 3px solid var(--ink);
+    border-radius: 0;
+    padding: 12px 22px;
+    cursor: pointer;
+    box-shadow: 3px 3px 0 var(--ink);
+    transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.btn:active {
+    transform: translate(3px, 3px);
+    box-shadow: 0 0 0 var(--ink);      /* the shadow "disappears" as the button presses down */
+}
+
+.btn:focus-visible,
+.answers button:focus-visible {
+    outline: 3px solid var(--ink);
+    outline-offset: 3px;
+}
+
+/* Quiz screen */
+.progress {
+    height: 10px;
+    background: #fff;
+    border: 2px solid var(--ink);
+    border-radius: 0;
+    margin-bottom: 8px;
+    overflow: hidden;
+}
+
+.progress > div {
+    height: 100%;
+    width: 0;
+    background: repeating-linear-gradient(
+        45deg,
+        var(--accent),
+        var(--accent) 8px,
+        color-mix(in srgb, var(--accent) 80%, black) 8px,
+        color-mix(in srgb, var(--accent) 80%, black) 16px
+    );
+    transition: width 0.3s;
+}
+
+.count {
+    font-size: 0.9rem;
+    margin-bottom: 24px;
+}
+
+.answers {
+    display: grid;
+    gap: 10px;
+}
+
+.answers button {
+    position: relative;
+    text-align: left;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    background: #ffffff95;
+    border: 3px solid var(--ink);
+    border-radius: 0;
+    padding: 14px 20px 14px 36px;   
+}
+
+.answers button::before {
+    content: "▶";
+    position: absolute;
+    left: 12px;
+    opacity: 0;
+    transition: opacity 0.1s;
+}
+
+.answers button:hover::before {
+    opacity: 1;
+}
+
+.answers button:hover {
+    background: #fdf6d8;   /* a faint highlight, like a selected menu row */
+}
+
+/* Result screen */
+#reveal-canvas {
+    cursor: default;
+}
+
+#reveal-canvas.clickable {
+    cursor: pointer;
+}
+
+#p-name {
+    text-transform: capitalize;
+}
+
+#p-img {
+    display: block;
+    width: 280px;
+    height: 280px;
+    margin: 0 auto 20px;
+    image-rendering: pixelated;
+    cursor: pointer;
+    /* keeps the small sprite crisp instead of blurry */
+}
+
+#p-img[hidden] {
+    display: none;
+}
+
+#p-type p {
+    margin: 0;
+    padding: 2px 12px;
+    font-size: 0.9rem;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 4px;
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.25);
+}
+
+#p-blurb {
+    font-family: "PokemonClassic", sans-serif;
+    font-size: clamp(0.75rem, 2.2vw, 0.9rem);
+    line-height: 1.5;
+    margin-top: 12px;
+    margin-bottom: 22px;
+    letter-spacing: 0.05em;
+    color: #000000;
+}
+
+#p-dex {
+    font-style: italic;
+}
+
+/* Stat bars */
+#p-stats {
+    margin-bottom: 22px;
+    font-family: "PokemonClassic", sans-serif;
+    font-size: clamp(0.75rem, 2.2vw, 0.9rem);
+    line-height: 1.5;
+    margin: 0 0 22px;
+    letter-spacing: 0.05em;
+    -webkit-text-stroke: 1.5px #000000;
+    color: #000000;
+}
+
+.stat {
+    display: grid;
+    grid-template-columns: 130px 1fr 36px;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+    font-size: 0.9rem;
+}
+
+.stat span:first-child {
+    text-transform: capitalize;
+}
+
+.stat span:last-child {
+    text-align: right;
+}
+
+.track {
+    background: #fff;
+    height: 10px;
+}
+
+.fill {
+    background: var(--accent);
+    height: 100%;
+}
+
+#reveal-canvas {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 8px;
+}
+
+#particle-canvas {
+  position: fixed;
+  inset: 0;              /* shorthand for top/right/bottom/left: 0, covers the whole screen */
+  pointer-events: none;  /* lets clicks pass through to the buttons underneath */
+  z-index: 5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
+}
